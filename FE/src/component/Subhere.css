@@ -1,0 +1,82 @@
+
+/* subscribe for more */
+.container-fluid.subscribe {
+  background-color: rgba(0, 0, 0, 0.852);
+  flex-direction: column;
+}
+
+.box_sub {
+  width: 100%;
+  padding: 20px;
+  color: white;
+}
+
+.container-fluid.subscribe .row {
+  display: flex;
+  padding: 0px 300px 30px 300px;
+}
+
+.email-box {
+  height: 100%;
+}
+
+.email-box input {
+  width: 100%;
+  height: 100%;
+  border-radius: 5px;
+}
+
+.container-fluid.subscribe .row input {
+  padding: 10px;
+}
+
+.container-fluid.subscribe .row .button {
+  width: 100%;
+  height: 100%;
+  background-color: var(--red-color);
+  padding: 10px 12px;
+  border-radius: 10px;
+  color: white;
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.container-fluid.subscribe .row .button:active {
+  background-color: white;
+  color: var(--red-color);
+}
+
+.adrees_header {
+  font-size: 25px;
+}
+
+
+@media (max-width: 992px) {
+  .navbar_container form {
+    margin-right: 10px;
+  }
+  .container-fluid.header .background {
+    width: 450px;
+  }
+  .container-fluid.subscribe .row {
+    padding: 0px 70px 30px 70px;
+  }
+}
+
+@media (max-width: 768px) {
+  .container-fluid.header .background {
+    width: 250px;
+  }
+  .navbar_container form {
+    margin-right: 10px;
+  }
+  .container-fluid.subscribe .row {
+    padding: 0px 0px 30px;
+  }
+}
+
+@media (max-width: 576px) {
+  .container-fluid.header .background {
+    width: 200px;
+  }
+}
