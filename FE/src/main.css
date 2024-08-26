@@ -1,0 +1,46 @@
+.form-check {
+  border: none;
+  justify-content: start;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+.btn.btn-success {
+  background-color: #198754;
+}
+
+.Toastify__toast-container {
+  top: 60px;
+}
+
+body::-webkit-scrollbar {
+  width: 10px;
+}
+
+body::-webkit-scrollbar-thumb {
+  background-color: red;
+  outline: 1px solid red;
+  border-radius: 10px;
+}
+.sreach_result::-webkit-scrollbar {
+  width: 10px;
+}
+
+.sreach_result::-webkit-scrollbar-thumb {
+  background-color: red;
+  outline: 1px solid red;
+  border-radius: 10px;
+}
+
+.close_item i {
+  color: red;
+  font-size: 30px;
+  cursor: pointer;
+}
+
+.swiper-slide-prev, .swiper-slide-next {
+  width: 50%;
+}
+

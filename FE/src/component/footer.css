@@ -1,0 +1,39 @@
+/* footer */
+.container_footer {
+  height: fit-content;
+  background-image: url("./images/old-black-background-grunge-texture-dark-wallpaper-blackboard-chalkboard-room-wall.jpg");
+  background-size: cover;
+  background-position: center;
+  color: white;
+}
+
+.aboutus_footer .logo_footer img {
+  width: 200px;
+}
+
+.container_footer a {
+  text-decoration: none;
+  color: white;
+}
+
+.container_footer a:hover {
+  color: rgb(139, 137, 137);
+}
+
+.social_footer a svg {
+  margin-right: 10px;
+}
+
+.social_footer a svg:hover {
+  fill: var(--red-color);
+}
+
+.adress_1 {
+  margin-top: 13px;
+  font-weight: 700;
+  font-size: 18px;
+}
+
+.adrees_header {
+  font-size: 25px;
+}
