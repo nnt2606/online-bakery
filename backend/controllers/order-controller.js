@@ -30,9 +30,9 @@ export const getAllOrder = async (req,res,next) => {
                     }
                 }
 
-                if (items.length === 0) {
-                    return res.status(408).json({'msg': 'no item in order'});
-                }
+                // if (items.length === 0) {
+                //     return res.status(408).json({'msg': 'no item in order'});
+                // }
 
                 order['items'] = items
             }
@@ -68,9 +68,9 @@ export const getOrderHistory = async (req,res,next) => {
                     }
                 }
 
-                if (items.length === 0) {
-                    return res.status(408).json({'msg': 'no item in order'});
-                }
+                // if (items.length === 0) {
+                //     return res.status(408).json({'msg': 'no item in order'});
+                // }
 
                 order['items'] = items
             }
@@ -108,9 +108,9 @@ export const viewOrder = async (req,res,next) => {
             }
         }
 
-        if (items.length === 0) {
-            return res.status(408).json({'msg': 'no item in order'});
-        }
+        // if (items.length === 0) {
+        //     return res.status(408).json({'msg': 'no item in order'});
+        // }
 
         order['items'] = items
         return res.status(200).json(order)
