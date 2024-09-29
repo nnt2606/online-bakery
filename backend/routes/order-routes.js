@@ -8,9 +8,9 @@ orderRouter.get("/all/:adminId", getAllOrder)
 orderRouter.get("/history/:id", getOrderHistory)
 orderRouter.get("/view/:id", viewOrder)
 orderRouter.post("/create", createOrder)
-orderRouter.get("/approve/:id", approveOrder)
-orderRouter.get("/reject/:id", rejectOrder)
-orderRouter.get("/close/:id", closeOrder)
-orderRouter.delete("/cancel/:id", cancelOrder)
+orderRouter.post("/approve/:id", approveOrder)
+orderRouter.post("/reject/:id", rejectOrder)
+orderRouter.post("/close/:id", closeOrder)
+orderRouter.post("/cancel/:id", cancelOrder)
 
 export default orderRouter

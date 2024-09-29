@@ -2,7 +2,6 @@ import express from 'express';
 import cors from 'cors';
 import accountRouter from "./routes/account-routes.js";
 import adminRouter from "./routes/admin-routes.js";
-import blogRouter from "./routes/blog-routes.js";
 import cartRouter from './routes/cart-routes.js';
 import productRouter from './routes/product-routes.js';
 import orderRouter from './routes/order-routes.js';
@@ -24,7 +23,6 @@ app.use(express.json())
 
 app.use('/account', accountRouter)
 app.use('/admin', adminRouter)
-app.use('/blog', blogRouter)
 app.use('/cart', cartRouter)
 app.use('/order', orderRouter)
 app.use('/product', productRouter)
