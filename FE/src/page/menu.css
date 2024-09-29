@@ -1,0 +1,251 @@
+:root {
+  --red-color: #f00000;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+.spin-loading {
+  display: block;
+}
+
+.spin-loading::after {
+  content: "";
+  z-index: 1;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(255, 255, 255, 0.347);
+}
+
+.spinner {
+  z-index: 2;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  box-shadow: 48px 0 0 0 rgba(200, 0, 0, 0.3),
+    36px 36px 0 0 rgba(200, 0, 0, 0.3), 0px 48px 0 0 rgba(200, 0, 0, 0.3),
+    -36px 36px 0 0 rgba(200, 0, 0, 0.3), -48px 0 0 0 rgba(200, 0, 0, 0.3),
+    -36px -36px 0 0 rgba(200, 0, 0, 0.3), 0px -48px 0 0 rgba(200, 0, 0, 0.3),
+    36px -36px 0 0 rgba(200, 0, 0, 0.3);
+  animation: animate 1.5s infinite linear;
+}
+
+@keyframes animate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.toast-body {
+  padding: 5px;
+}
+
+.toast {
+  text-align: center;
+  width: fit-content;
+}
+
+.toast svg {
+  margin-left: 3px;
+}
+
+.container-toast {
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  right: 0;
+  z-index: 1;
+  background-color: #00000058;
+}
+
+/* menu */
+
+.container.menu {
+  margin-top: 80px;
+}
+
+.container.menu .menu_right {
+  top: 80px;
+  margin-bottom: 10px;
+}
+
+.header_filter {
+  display: flex;
+  justify-content: end;
+  padding: 10px;
+  padding-left: 0;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.header_filter > * {
+  margin-right: 3px;
+}
+
+.container.menu .filter_button button {
+  width: 50%;
+  margin: 20px;
+}
+
+.container.menu .filter_button button:active {
+  background-color: white;
+  color: var(--red-color);
+}
+
+.container.menu .filter_icon button:active {
+  background-color: white;
+  color: var(--red-color);
+}
+
+.container.menu select {
+  padding: 3px;
+  border-radius: 5px;
+}
+
+.container_menu_items {
+  margin-top: 33px;
+}
+
+.container_menu_items .menu_item {
+  flex-wrap: wrap;
+  text-align: center;
+  gap: 5%;
+}
+
+.container_menu_items .discount {
+  top: 10px;
+  left: 10px;
+  width: 65px;
+  height: 65px;
+  background-color: var(--red-color);
+  border-radius: 50%;
+  border: 1px solid #c2a7a7;
+  box-shadow: 5px 5px 5px #4d2e2e;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-size: large;
+  font-weight: bold;
+}
+
+.container_menu_items .name_item {
+  font-size: 18px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  font-weight: 600;
+}
+
+.container_menu_items .box_items {
+  width: 30%;
+  height: 450px;
+  margin-bottom: 25px;
+  border-radius: 10px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+form.d-flex.align-items-center {
+  margin-top: 4px;
+  margin-left: 10px;
+}
+
+@media (max-width: 768px) {
+  .container_menu_items .box_items {
+    width: 46%;
+  }
+  .container_menu_items {
+    justify-content: center;
+  }
+}
+
+@media (max-width: 576px) {
+  .container_menu_items .box_items {
+    width: 100%;
+    margin-right: 0;
+  }
+  .container_menu_items {
+    justify-content: center;
+  }
+}
+
+.accordion-header {
+  width: 100%;
+  margin-top: 0;
+}
+
+.container_menu_items .img_item {
+  height: 300px;
+  overflow: hidden;
+}
+
+.container_menu_items .box_items .star_item i {
+  color: var(--red-color);
+  font-size: 25px;
+}
+
+.container_menu_items .box_items .price_item .real-price {
+  color: red;
+  font-weight: 500;
+  margin-left: 5px;
+}
+
+.container_menu_items .box_items img {
+  width: 100%;
+  height: 100%;
+  border-radius: 10px;
+}
+
+
+.container_menu_items .real_price.discounts {
+  font-style: italic;
+  text-decoration: line-through;
+  margin: 0 5px;
+}
+
+.container_menu_items .button_oder button:active {
+  color: var(--red-color);
+  background-color: white;
+}
+
+.accordion-body input {
+  margin-right: 5px;
+}
+
+.container.menu .accordion {
+  display: block;
+  margin-top: 20px;
+}
+
+.container.menu .pagination a {
+  color: var(--red-color);
+  border: 1px solid var(--red-color);
+}
+
+.container.menu .pagination a:active,
+.container.menu .pagination .active {
+  color: white;
+  background-color: var(--red-color);
+  z-index: 0;
+}
+
+.price_sort label {
+  margin-right: 10px;
+}

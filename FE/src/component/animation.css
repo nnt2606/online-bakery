@@ -1,0 +1,35 @@
+.container-spinner {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 3;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(255, 255, 255, 0.403);
+}
+
+.spinner {
+  position: fixed;
+  z-index: 2;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  box-shadow: 48px 0 0 0 rgb(255, 0, 0),
+    36px 36px 0 0 rgb(255, 0, 0), 0px 48px 0 0 rgb(251, 0, 0),
+    -36px 36px 0 0 rgb(255, 0, 0), -48px 0 0 0 rgb(255, 0, 0),
+    -36px -36px 0 0 rgb(255, 0, 0), 0px -48px 0 0 rgb(255, 0, 0),
+    36px -36px 0 0 rgb(255, 0, 0);
+  animation: animate 1.5s infinite linear;
+}
+
+@keyframes animate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}

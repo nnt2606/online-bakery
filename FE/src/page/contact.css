@@ -1,0 +1,22 @@
+.container.form {
+  margin-top: 90px;
+  margin-bottom: 20px;
+}
+
+.form-label {
+  margin: 0px;
+}
+
+.container.form .form-group {
+  margin-bottom: 25px;
+}
+
+::placeholder {
+  color:rgba(255, 255, 255, 0.434)
+}
+
+.container.form button:active {
+  background-color: white;
+  color: var(--red-color);
+  border: 1px solid var(--red-color);
+}

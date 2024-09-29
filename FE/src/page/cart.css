@@ -1,0 +1,154 @@
+/* cart */
+.container-cart {
+  margin-top: 80px;
+  padding: 0 10px;
+}
+
+.noitem {
+  font-size: 30px;
+}
+
+@media (min-width: 768px) {
+  .container-cart .container {
+    padding: 0;
+  }
+}
+
+.container-cart .container-fluid {
+  margin-top: 20px;
+}
+
+.container-cart .table {
+}
+
+.container-cart .item .title_item {
+  margin-bottom: 10px;
+}
+
+.container-cart .item .img_item img {
+  width: 150px;
+  height: 150px;
+  border-radius: 10px;
+}
+
+.container-cart td {
+  vertical-align: middle;
+}
+
+.box-number {
+  justify-content: center;
+}
+
+.box-number input {
+  max-width: 50px;
+  text-align: center;
+  margin: 0 10px;
+}
+
+.box-number span {
+  color: var(--red-color);
+  cursor: pointer;
+  font-size: 25px;
+}
+
+.container-cart .number_item .close_item .bi-x {
+  cursor: pointer;
+  color: red;
+}
+
+.name-item-check {
+  width: 60%;
+}
+
+.total_price {
+  padding: 10px;
+  border: 1px solid black;
+  border-radius: 10px;
+  position: sticky;
+  top: 80px;
+  right: 0;
+  margin-bottom: 10px;
+}
+
+.total_price h3 {
+  text-align: center;
+}
+
+.box-total-price .item-total-money {
+  margin-bottom: 10px;
+  padding-bottom: 2px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.221);
+}
+
+.box-total-price {
+  padding: 5px;
+}
+
+.total_price button {
+  padding: 10px 12px;
+  background-color: var(--red-color);
+  color: white;
+  border: 1px solid var(--red-color);
+  border-radius: 10px;
+  width: 100%;
+}
+
+.total_price button:active {
+  background-color: white;
+  color: var(--red-color);
+}
+
+.item-total-money,
+.total_money {
+  display: flex;
+  justify-content: space-between;
+}
+
+.total_money {
+  font-size: large;
+  font-weight: bold;
+}
+
+/* cart 2 */
+
+.box-items-2 {
+  display: flex;
+  margin-bottom: 10px;
+  background-color: rgb(213, 229, 243);
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.container-item-2 .box-img img {
+  width: 150px;
+  height: 150px;
+  margin-right: 10px;
+}
+
+.name-item-2 {
+  margin-bottom: 10px;
+}
+
+.price-item-2 input {
+  text-align: center;
+  width: 25px;
+  margin-left: 3px;
+}
+
+.price-item-2 {
+  align-items: flex-start;
+}
+
+.container-cart h5 {
+  margin-bottom: 30px;
+}
+
+.close_item.cart-2 {
+  margin-left: auto;
+  margin-right: 1px;
+}
+
+.close_item.cart-2 i {
+  font-size: larger;
+  color: var(--red-color);
+}
