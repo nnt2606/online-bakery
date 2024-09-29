@@ -12,7 +12,7 @@ const OrderInfor:React.FC<OrderInfoProps> = ({data, infor}) =>  {
   const name = userStore((state) => state.name);
 
   return (
-    <div className="min-h-screen">
+    <div className="">
       <div className="flex min-h-full flex-1 flex-col justify-center px-5 py-12 lg:px-8">
         <div className="sm:mx-auto sm:w-full sm:max-w-sm">
           <h2 className="text-center text-3xl font-bold leading-9 tracking-tight text-orange">
