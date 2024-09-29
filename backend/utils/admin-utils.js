@@ -13,7 +13,7 @@ export function getAdminById(id) {
 
 export function getAdminByName(name, password) {
     return new Promise((resolve, reject) => {
-        db.get('SELECT id, name, mail FROM admin WHERE name=(?) and password=(?)', [name, password], (err, rows) => {
+        db.get('SELECT id, name, mail FROM admin WHERE mail=(?) and password=(?)', [name, password], (err, rows) => {
             if(err)
                 reject(err);
             else
