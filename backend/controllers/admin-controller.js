@@ -37,6 +37,7 @@ export const adminSignin = async (req,res,next) => {
         const admin = await getAdminByName(req.body.name, req.body.password);
 
         if(admin) {
+            admin['isAdmin'] = true;
             return res.status(200).json(admin)
         } else {
             return res.status(404).json({'msg': 'admin not found'});
