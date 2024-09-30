@@ -2,9 +2,12 @@ import { MdBorderColor, MdDelete } from "react-icons/md";
 import ProductDetail from "./component/_productDetail";
 import Product from "~/interface/Products";
 import { useEffect, useState } from "react";
-import { getAllProduct } from "~/API/productAPI";
+import { getAllProduct } from "~/API/productAPI"; 
+import { Button } from "~/layouts/Button";
+import { useNavigate } from "@remix-run/react";
 
 export default function ManageProduct() {
+  const navigate = useNavigate();
     const[data, setData] = useState<Product[]>([]);
 
     const fetchData = async() => {
@@ -19,11 +22,11 @@ export default function ManageProduct() {
     }, [])
 
     const handleDelete = (item: Product) => {
-
+      
     }
 
     const handleUpdate = (item: Product) => {
-
+      navigate(`/update-product?id=${item.id}`);
     }
     
   return (
@@ -37,7 +40,7 @@ export default function ManageProduct() {
       </div>
 
       <div>
-        Button add new
+        <Button title="Tạo sản phẩm mới" path="/update-product"/>
       </div>
       
       <div className="pb-10">

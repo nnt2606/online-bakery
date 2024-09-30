@@ -1,13 +1,29 @@
 import { MdBorderColor, MdDelete } from "react-icons/md";
 import Product from "~/interface/Products";
 import userStore from "~/zustand/userStore";
+import {addItemToCart} from "../../API/cartAPI";
 
 interface productDetailProps {
   data: Product;
 }
 
 const ProductDetail: React.FC<productDetailProps> = ({ data }) => {
-    const isAdmin = userStore((state) => state.isAdmin);
+  const isAdmin = userStore((state) => state.isAdmin);
+  const id = userStore((state) => state.id);
+
+  const handleAddToCart = async() => {
+    try{
+      const jsonData = {
+        itemId: data.id,
+        quantity: 1
+      }
+       const response = await addItemToCart(id, jsonData);
+       alert("Thêm sản phẩm vào giỏ hàng thành công!"); 
+    }catch(error){
+      alert("Thêm vào giỏ hàng không thành công! Thử lại")
+    }
+  }
+
   return (
     <div className="min-h-screen">
       <div className="container mx-auto px-4 py-8">
@@ -102,11 +118,17 @@ const ProductDetail: React.FC<productDetailProps> = ({ data }) => {
             </div>
 
             <div className="flex space-x-4 mb-6">
-              <button disabled={isAdmin}
-               className={`px-4 py-2 font-semibold text-white rounded flex gap-2 items-center
-                ${isAdmin ? 'bg-gray-400 cursor-not-allowed' : 'bg-blue-500 hover:bg-blue-700 cursor-pointer'}
-              `} 
-            //   className="bg-black flex gap-2 items-center text-white px-6 py-2 rounded-md hover:bg-orange focus:outline-none focus:ring-2 focus:ring-orange focus:ring-offset-2"
+              <button
+              onClick={handleAddToCart}
+                disabled={isAdmin}
+                className={`px-4 py-2 font-semibold text-white rounded flex gap-2 items-center
+                ${
+                  isAdmin
+                    ? "bg-gray-400 cursor-not-allowed"
+                    : "bg-blue-500 hover:bg-blue-700 cursor-pointer"
+                }
+              `}
+                //   className="bg-black flex gap-2 items-center text-white px-6 py-2 rounded-md hover:bg-orange focus:outline-none focus:ring-2 focus:ring-orange focus:ring-offset-2"
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -127,7 +149,9 @@ const ProductDetail: React.FC<productDetailProps> = ({ data }) => {
             </div>
 
             <div>
-              <h3 className="text-lg font-semibold mb-2">Trả hàng và hoàn tiền</h3>
+              <h3 className="text-lg font-semibold mb-2">
+                Trả hàng và hoàn tiền
+              </h3>
               <ul className="list-disc list-inside text-gray-700">
                 <li>Giao hàng trong vòng 2-3 ngày</li>
                 <li>Đổi trả 1-1 đối với bánh lỗi</li>
