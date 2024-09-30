@@ -1,21 +1,22 @@
 import { MdBorderColor, MdDelete } from "react-icons/md";
 import ProductDetail from "./component/_productDetail";
 import Product from "~/interface/Products";
-const data = [
-  {
-    id: "123",
-    img: "https://picsum.photos/200",
-    name: "picture",
-    price: 12000,
-    quantity: 2,
-    description: "mo ta",
-    category: "banh ngot",
-    status: "Da duyet",
-    sold: 10,
-  },
-];
+import { useEffect, useState } from "react";
+import { getAllProduct } from "~/API/productAPI";
 
 export default function ManageProduct() {
+    const[data, setData] = useState<Product[]>([]);
+
+    const fetchData = async() => {
+        const response = await getAllProduct();
+        if(response.status === 200) {
+            setData(response.data);
+        }
+    }
+
+    useEffect(() => {
+        fetchData();
+    }, [])
 
     const handleDelete = (item: Product) => {
 
@@ -35,6 +36,10 @@ export default function ManageProduct() {
         </div>
       </div>
 
+      <div>
+        Button add new
+      </div>
+      
       <div className="pb-10">
         <div className="flex flex-col">
           <div className="overflow-x-auto sm:mx-6 lg:-mx-8">
@@ -77,7 +82,7 @@ export default function ManageProduct() {
                           {item.name}
                         </td>
                         <td className="whitespace-nowrap px-6 py-4">
-                          {item.price * item.quantity}
+                          {item.price}
                         </td>
                         <td className="whitespace-nowrap px-6 py-4 item-center inline-flex justify-center mt-[33px]">
                           <MdDelete
@@ -94,24 +99,6 @@ export default function ManageProduct() {
                       </tr>
                     ))}
                   </tbody>
-                  <tfoot>
-                    <td
-                      colSpan={3}
-                      className="p-4 text-left font-bold text-slate-800 border-t border-slate-300 text-xl"
-                    >
-                      Tổng tiền:
-                    </td>
-                    <td
-                      colSpan={3}
-                      className="p-4 font-semibold text-slate-800 border-t border-slate-300 text-xl text-right pr-[200px]"
-                    >
-                      {data.reduce(
-                        (total, item) => total + item.quantity * item.price,
-                        0
-                      )}{" "}
-                      VNĐ
-                    </td>
-                  </tfoot>
                 </table>
               </div>
             </div>

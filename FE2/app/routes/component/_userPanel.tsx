@@ -6,7 +6,7 @@ export default function UserPanel() {
   const isAdmin = userStore((state) => state.isAdmin);
 
   return (
-    <div className="min-h-screen">
+    <div className="">
       {isAdmin === false ? (
         <div>
           <div className="text-xl font-semibold ml-10 mb-5 text-orange cursor-default">

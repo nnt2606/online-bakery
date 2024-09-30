@@ -1,14 +1,34 @@
 import { NavLink } from "@remix-run/react";
+import { useEffect, useState } from "react";
+import { getAllOrder} from "../API/orderAPI";
+import OrderInfo from "~/interface/OrderInfor";
+import userStore from "~/zustand/userStore";
+import { StatusTransfer } from "~/variable/statusTransfer";
 
 export default function ManageOrder() {
-  const data = [
-    {
-      id: 1,
-      time: "12h30 29/09/2024",
-      total: 120000,
-      status: "Duyệt",
-    },
-  ];
+  const[data, setData] = useState<OrderInfo[]>([]);
+  const id = userStore((state) => state.id); 
+
+    const fetchData = async() => {
+        const response = await getAllOrder(id);
+        if(response.status === 200) {
+            setData(response.data);
+        }
+    }
+
+    useEffect(() => {
+        fetchData();
+    }, [])
+
+    if(data.length === 0) {
+      return(
+        <div className="min-h-screen">
+          <div className="border-gray-300 h-20 w-20 animate-spin rounded-full border-8 border-t-blue-600" />
+        </div>
+      )
+    }
+  
+
   return (
     <div className="min-h-screen">
       <div className="flex min-h-full flex-1 flex-col justify-center px-5 py-12 lg:px-8">
@@ -43,19 +63,21 @@ export default function ManageOrder() {
                   </tr>
                 </thead>
                 <tbody>
-                  {data.map((item, index) => (
+                  {data
+                  .sort((a, b) => Number(b.id) - Number(a.id))
+                  .map((item, index) => (
                     <tr className="border-b border-neutral-200">
                       <td className="whitespace-nowrap px-6 py-4 font-medium">
                         {index + 1}
                       </td>
                       <td className="whitespace-nowrap px-6 py-4">
-                        {item.time}
+                        {item.date}
                       </td>
                       <td className="whitespace-nowrap px-6 py-4">
                         {item.total}
                       </td>
                       <td className="whitespace-nowrap px-6 py-4">
-                        {item.status}
+                        {StatusTransfer.find((transfer) => transfer.status === item.status)?.to || item.status}
                       </td>
                       <td className="whitespace-nowrap px-6 py-4 cursor-pointer text-orange font-semibold">
                         <NavLink to={`/order-details/${item.id}`}>

@@ -25,16 +25,6 @@ export const NAVBAR_ADMIN = [
         icon: <MdOutlinePassword />
     },
     {
-        path: "/orders",
-        label: "Đơn hàng của bạn",
-        icon: <MdHistory />
-    },
-    {
-        path: "/cart",
-        label: "Giỏ hàng của bạn",
-        icon: <MdOutlineShoppingCart />
-    },
-    {
         path: "/manage-products",
         label: "Quản lý sản phẩm",
         icon: <MdApps />
