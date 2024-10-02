@@ -7,4 +7,5 @@ export default interface Product {
     category: string;
     sold: number;
     status: string;
+    expiration: string;
   }

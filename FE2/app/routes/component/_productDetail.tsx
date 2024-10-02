@@ -148,6 +148,15 @@ const ProductDetail: React.FC<productDetailProps> = ({ data }) => {
               </button>
             </div>
 
+            <div className=" inline-flex">
+              <div className="text-lg font-semibold mb-2">
+                Thời gian sử dụng:
+              </div>
+              <div className="text-base pl-2 text-gray-700">
+                {data.expiration}
+              </div>
+            </div>
+
             <div>
               <h3 className="text-lg font-semibold mb-2">
                 Trả hàng và hoàn tiền

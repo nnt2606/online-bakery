@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import userStore from "../zustand/userStore";
 import { useNavigate } from "@remix-run/react";
-import cartStore from "~/zustand/cartStore";
 import { userLogin } from "../API/userAPI";
 import { adminLogin } from "../API/adminAPI";
 import {getCart} from "../API/cartAPI";
@@ -28,8 +27,8 @@ import {getCart} from "../API/cartAPI";
 
 export default function Login() {
   const login = userStore((state) => state.login);
+  const save = userStore(((state) => state.save));
   const navigate = useNavigate();
-  const loginCart = cartStore((state) => state.login);
   const [errMsg, setErrMsg] = useState('');
 
   interface FormInterface {
@@ -55,10 +54,11 @@ export default function Login() {
     handleLogin(dataObject, radio);
   };
 
-  const handleLogin = async (data: object, radio: string) => {
+  const handleLogin = async (data: {mail:string, password: string}, radio: string) => {
     if (radio === "isUser") {
       try{
         const response = await userLogin(data);
+        save(data.mail, data.password);
         login(response.data, false);
         if (confirm("Đăng nhập thành công!")) navigate("/");
       } catch(error) {
@@ -68,6 +68,7 @@ export default function Login() {
     } else if (radio === "isAdmin") {
       try{
         const response = await adminLogin(data);
+        save(data.mail, data.password);
         login(response.data, true);
         if (confirm("Đăng nhập thành công!")) navigate("/");
       } catch(error) {
@@ -75,6 +76,10 @@ export default function Login() {
       }
     }
   };
+
+  const handleError = () => {
+    setErrMsg("");
+  }
 
 
   return (
@@ -107,6 +112,7 @@ export default function Login() {
                 name="email"
                 type="email"
                 placeholder="Tên đăng nhập"
+                onChange={handleError}
                 required
                 autoComplete="email"
                 className="px-3 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-orange sm:text-base sm:leading-6"
@@ -137,6 +143,7 @@ export default function Login() {
                 name="password"
                 type="password"
                 placeholder="Mật khẩu"
+                onChange={handleError}
                 required
                 autoComplete="current-password"
                 className="px-3 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-orange sm:text-base sm:leading-6"

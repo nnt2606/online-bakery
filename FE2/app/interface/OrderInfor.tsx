@@ -11,3 +11,4 @@ export default interface OrderInfo {
     items: Cart[];
     status: string;
 }
+
