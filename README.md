@@ -5,3 +5,7 @@ NodeJS, ReactJS and SQLite
 ```
 npm install
 ```
+# Running program
+```
+npm run dev
+```
