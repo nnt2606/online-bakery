@@ -1,11 +1,12 @@
+import { Cart } from "~/interface/Cart";
 import OrderInfo from "~/interface/OrderInfor";
 import Product from "~/interface/Products";
 
 interface DetailProps {
-  data: Product[];
+  data: Cart[];
 }
 
-const Detail: React.FC<DetailProps> = ({ data}) => {
+const Detail: React.FC<DetailProps> = ({data}) => {
 
   return (
     <div className="pb-10">
@@ -41,13 +42,13 @@ const Detail: React.FC<DetailProps> = ({ data}) => {
                       </td>
                       <td className="whitespace-nowrap px-6 py-4 text-center align-middle">
                         <img
-                          src={item.img}
+                          src={item.item.img}
                           alt="img"
                           className="mx-auto max-h-[100px] w-auto"
                         />
                       </td>
                       <td className="whitespace-nowrap px-6 py-4">
-                        {item.name}
+                        {item.item.name}
                       </td>
                       <td
                         className="whitespace-nowrap px-6 py-4 align-midde text-center"
@@ -57,7 +58,7 @@ const Detail: React.FC<DetailProps> = ({ data}) => {
                         </div>
                       </td>
                       <td className="whitespace-nowrap px-6 py-4">
-                        {item.price * item.quantity}
+                        {item.item.price * item.quantity}
                       </td>
                     </tr>
                   ))}
@@ -74,7 +75,7 @@ const Detail: React.FC<DetailProps> = ({ data}) => {
                     className="p-4 font-semibold text-slate-800 border-t border-slate-300 text-xl"
                   >
                     {data.reduce(
-                      (total, item) => total + item.quantity * item.price,
+                      (total, item) => total + item.quantity * item.item.price,
                       0
                     )}{" "}
                     VNĐ

@@ -8,7 +8,7 @@ export const signup = async (req,res,next) => {
     
     
     try {
-        const user = await getUserByName(name, password);
+        const user = await getUserByName(mail, password);
         if(user) {
             return res.status(408).json({'msg': 'account exists'})
         } 
@@ -20,7 +20,7 @@ export const signup = async (req,res,next) => {
     try {
         await addUser(name, mail, phone, password);
         
-        const user = await getUserByName(name, password);
+        const user = await getUserByName(mail, password);
 
         if(user) {
             return res.status(200).json(user)
@@ -36,9 +36,10 @@ export const signup = async (req,res,next) => {
 
 export const signin = async (req,res,next) => {
     try {
-        const user = await getUserByName(req.body.name, req.body.password);
+        const user = await getUserByName(req.body.mail, req.body.password);
 
         if(user) {
+            user['isAdmin'] = false;
             return res.status(200).json(user)
         } else {
             return res.status(404).json({'msg': 'account not found'});

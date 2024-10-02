@@ -36,7 +36,7 @@ export function getOrderById(id) {
 
 export function getLatestOrder(accId, date) {
     return new Promise((resolve, reject) => {
-        db.get('SELECT * FROM `order` WHERE accId=(?) AND date=(?)', [accId, date], (err, rows) => {
+        db.get('SELECT * FROM `order` WHERE accId=(?) AND date=(?) ORDER BY id DESC', [accId, date], (err, rows) => {
             if(err)
                 reject(err);
             else
@@ -74,6 +74,17 @@ export function addOrderItem(orderId, itemId, quantity) {
                 reject(err);
             else
                 resolve();
+        });
+    });
+}
+
+export function getOrderStatus(orderId) {
+    return new Promise((resolve, reject) => {
+        db.all('SELECT * FROM orderStatus WHERE orderId=(?)', orderId, (err, rows) => {
+            if(err)
+                reject(err);
+            else
+                resolve(rows);
         });
     });
 }

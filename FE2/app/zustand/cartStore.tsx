@@ -2,14 +2,15 @@ import { create } from "zustand";
 import Products from "~/interface/Products";
 import { persist } from "zustand/middleware";
 import Product from "~/interface/Products";
+import { Cart } from "~/interface/Cart";
 
 interface CartState {
-    cart: Products[],
-    login: (cartInit: Products[]) => void,
+    cart: Cart[],
+    login: (cartInit: Cart[]) => void,
     logout: () => void,
-    changeQuantity: (newCart: Products[]) => void,
-    addNew: (newItem: Products) => void,
-    remove: (item: Product) => void,
+    changeQuantity: (newCart: Cart[]) => void,
+    addNew: (newItem: Cart) => void,
+    remove: (item: Cart) => void,
 }
 
 const cartStore = create<CartState>() (
@@ -32,7 +33,7 @@ const cartStore = create<CartState>() (
             remove: (item) => {
                 const currentCart = get().cart;
                 set({
-                    cart: currentCart.filter((cartItem) => cartItem.id !== item.id)
+                    cart: currentCart.filter((cartItem) => cartItem.item.id !== item.item.id)
                 });
             }
         }),

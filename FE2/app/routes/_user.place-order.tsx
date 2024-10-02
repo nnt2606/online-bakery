@@ -1,15 +1,31 @@
 import cartStore from "~/zustand/cartStore";
 import Detail from "./component/_orderStatic";
 import { useEffect, useState } from "react";
-import Product from "~/interface/Products";
 import userStore from "~/zustand/userStore";
 import { Button } from "~/layouts/Button";
 import { useNavigate } from "@remix-run/react";
+import { getCart } from "~/API/cartAPI";
+import { Cart } from "~/interface/Cart";
 
 export default function PlaceOrder() {
-  const cart = cartStore((state) => state.cart);
+  const [data, setData] = useState<Cart[]>([]);
   const name = userStore((state) => state.name);
+  const id = userStore((state) => state.id);
   const navigate = useNavigate();
+
+  const fetchData = async () => {
+    try {
+     console.log(id); 
+      const response = await getCart(id);
+      setData(response.data);
+    } catch (error) {
+      alert("Không thể lấy dữ liệu giỏ hàng! Hãy load lại");
+    }
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, []);
 
   const handleOrder = () => {
     if (confirm("Đặt hàng thành công!")) navigate("/");
@@ -25,7 +41,7 @@ export default function PlaceOrder() {
         </div>
       </div>
 
-      <Detail data={cart} />
+      <Detail data={data} />
 
       <button
         onClick={handleOrder}

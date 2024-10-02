@@ -7,7 +7,7 @@ export const addAdmin = async (req,res,next) => {
     
     
     try {
-        const admin = await getAdminByName(name, password);
+        const admin = await getAdminByName(mail, password);
         if(admin) {
             return res.status(408).json({'msg': 'admin exists'})
         } 
@@ -19,7 +19,7 @@ export const addAdmin = async (req,res,next) => {
     try {
         await createAdmin(name, mail, password);
         
-        const admin = await getAdminByName(name, password);
+        const admin = await getAdminByName(mail, password);
 
         if(admin) {
             return res.status(200).json(admin)
@@ -34,9 +34,10 @@ export const addAdmin = async (req,res,next) => {
 
 export const adminSignin = async (req,res,next) => {
     try {
-        const admin = await getAdminByName(req.body.name, req.body.password);
+        const admin = await getAdminByName(req.body.mail, req.body.password);
 
         if(admin) {
+            admin['isAdmin'] = true;
             return res.status(200).json(admin)
         } else {
             return res.status(404).json({'msg': 'admin not found'});

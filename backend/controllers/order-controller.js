@@ -1,4 +1,4 @@
-import { getOrders, getOrdersByUser, getOrderById, getLatestOrder, addOrder, getOrderItems, addOrderItem, updateOrderStatus } from '../utils/order-utils.js'
+import { getOrders, getOrdersByUser, getOrderById, getLatestOrder, addOrder, getOrderItems, addOrderItem, updateOrderStatus, getOrderStatus } from '../utils/order-utils.js'
 import { getAdminById } from '../utils/admin-utils.js'
 import { getProductById } from '../utils/product-utils.js'
 import { getCartByUserId, clearCart } from '../utils/cart-utils.js'
@@ -30,11 +30,17 @@ export const getAllOrder = async (req,res,next) => {
                     }
                 }
 
-                if (items.length === 0) {
-                    return res.status(408).json({'msg': 'no item in order'});
-                }
+                // if (items.length === 0) {
+                //     return res.status(408).json({'msg': 'no item in order'});
+                // }
 
                 order['items'] = items
+                order['status'] = 'uncheck'
+
+                const orderStatuses = await getOrderStatus(order['id']);
+                if (orderStatuses instanceof Array && orderStatuses.length > 0) {
+                    order['status'] = orderStatuses[orderStatuses.length - 1]['action']
+                }
             }
             return res.status(200).json(orders)
         } else {
@@ -68,11 +74,17 @@ export const getOrderHistory = async (req,res,next) => {
                     }
                 }
 
-                if (items.length === 0) {
-                    return res.status(408).json({'msg': 'no item in order'});
-                }
+                // if (items.length === 0) {
+                //     return res.status(408).json({'msg': 'no item in order'});
+                // }
 
                 order['items'] = items
+                order['status'] = 'uncheck'
+
+                const orderStatuses = await getOrderStatus(order['id']);
+                if (orderStatuses instanceof Array && orderStatuses.length > 0) {
+                    order['status'] = orderStatuses[orderStatuses.length - 1]['action']
+                }
             }
             return res.status(200).json(orders)
         } else {
@@ -108,11 +120,17 @@ export const viewOrder = async (req,res,next) => {
             }
         }
 
-        if (items.length === 0) {
-            return res.status(408).json({'msg': 'no item in order'});
-        }
+        // if (items.length === 0) {
+        //     return res.status(408).json({'msg': 'no item in order'});
+        // }
 
         order['items'] = items
+        order['status'] = 'uncheck'
+
+        const orderStatuses = await getOrderStatus(order['id']);
+        if (orderStatuses instanceof Array && orderStatuses.length > 0) {
+            order['status'] = orderStatuses[orderStatuses.length - 1]['action']
+        }
         return res.status(200).json(order)
     } catch (error) {
         console.log(error);
@@ -160,6 +178,7 @@ export const createOrder = async (req,res,next) => {
                 }
 
                 order['items'] = items
+                order['status'] = 'uncheck'
                 await clearCart(accId);  // Clear the cart after placing order
             } else {
                 return res.status(404).json({'msg': 'products not found'});

@@ -4,27 +4,27 @@ import { MdDelete } from "react-icons/md";
 import Product from "../../interface/Products";
 import Products from "../products";
 import cartStore from "~/zustand/cartStore";
+import { Cart } from "~/interface/Cart";
 
 
 
 interface ProductTableProps {
-  data: Product[];
-  handleQuantityChange: (index: number, newQuantity: number) => void;
-  handleDelete: (item: Product) => void;
+  data: Cart[];
+  handleQuantityChange: (id: string, newQuantity: number) => void;
+  handleDelete: (item: Cart) => void;
 }
-
 
 const CartTable: React.FC<ProductTableProps> = ({ data, handleQuantityChange, handleDelete}) => {
 
 
 
-  const handleIncrement = (quantity: number, index:number) => {
-    handleQuantityChange(index, quantity + 1);
+  const handleIncrement = (quantity: number, id:string) => {
+    handleQuantityChange(id, quantity + 1);
 
 };
 
-const handleDecrement = (quantity: number, index:number) => {
-    handleQuantityChange(index, quantity - 1);
+const handleDecrement = (quantity: number, id:string) => {
+    handleQuantityChange(id, quantity - 1);
 };
 
   
@@ -66,13 +66,13 @@ const handleDecrement = (quantity: number, index:number) => {
                       </td>
                       <td className="whitespace-nowrap px-6 py-4 text-center align-middle">
                         <img
-                          src={item.img}
+                          src={item.item.img}
                           alt="img"
                           className="mx-auto max-h-[100px] w-auto"
                         />
                       </td>
                       <td className="whitespace-nowrap px-6 py-4">
-                        {item.name}
+                        {item.item.name}
                       </td>
                       <td className="whitespace-nowrap px-6 py-4 align-midde text-center" key={index}>
                         <div className="relative flex items-center">
@@ -80,7 +80,7 @@ const handleDecrement = (quantity: number, index:number) => {
                             type="button"
                             id="decrement-button"
                             data-input-counter-decrement="quantity-input"
-                            onClick={() => handleDecrement(item.quantity, index)}
+                            onClick={() => handleDecrement(item.quantity, item.item.id)}
                             className="bg-gray-100 dark:bg-gray-700 dark:hover:bg-gray-600 dark:border-gray-600 hover:bg-gray-200 border border-gray-300 rounded-s-lg p-3 h-11 focus:ring-gray-100 dark:focus:ring-gray-700 focus:ring-2 focus:outline-none"
                           >
                             <svg
@@ -112,7 +112,7 @@ const handleDecrement = (quantity: number, index:number) => {
                             type="button"
                             id="increment-button"
                             data-input-counter-increment="quantity-input"
-                            onClick={() => handleIncrement(item.quantity, index)}
+                            onClick={() => handleIncrement(item.quantity, item.item.id)}
                             className="bg-gray-100 dark:bg-gray-700 dark:hover:bg-gray-600 dark:border-gray-600 hover:bg-gray-200 border border-gray-300 rounded-e-lg p-3 h-11 focus:ring-gray-100 dark:focus:ring-gray-700 focus:ring-2 focus:outline-none"
                           >
                             <svg
@@ -134,7 +134,7 @@ const handleDecrement = (quantity: number, index:number) => {
                         </div>
                       </td>
                       <td className="whitespace-nowrap px-6 py-4">
-                        {item.price * item.quantity}
+                        {item.item.price * item.quantity}
                       </td>
                       <td className="whitespace-nowrap px-6 py-4 align-middle item-center">
                             <MdDelete size={25} className="text-red-600 mx-auto cursor-pointer" onClick={() => handleDelete(item)}/>
@@ -147,7 +147,7 @@ const handleDecrement = (quantity: number, index:number) => {
                         Tổng tiền: 
                     </td>
                     <td colSpan={3} className="p-4 font-semibold text-slate-800 border-t border-slate-300 text-xl text-right pr-[200px]">
-                        {data.reduce((total, item) => total + item.quantity*item.price, 0)} VNĐ
+                        {data.reduce((total, item) => total + item.quantity*item.item.price, 0)} VNĐ
                     </td>
                 </tfoot>
               </table>

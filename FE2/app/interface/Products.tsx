@@ -3,7 +3,6 @@ export default interface Product {
     img: string;
     name: string;
     price: number;
-    quantity: number;
     description: string;
     category: string;
     sold: number;
