@@ -9,7 +9,7 @@ interface OrderInfoProps {
 }
 
 const OrderInfor: React.FC<OrderInfoProps> = ({ infor }) => {
-  const name = userStore((state) => state.name);
+  const {name, phone} = userStore();
 
   return (
     <div className="">

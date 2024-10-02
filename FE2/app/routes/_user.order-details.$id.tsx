@@ -7,7 +7,7 @@ import { approveOrder, cancelOrder, closeOrder, getOrderDetail, rejectOrder } fr
 import { StatusTransfer } from "~/variable/statusTransfer";
 
 export default function Order() {
-  const isAdmin = userStore((state) => state.isAdmin);
+  const {isAdmin} = userStore();
   const adminId = userStore((state) => state.id);
   const { id } = useParams();
 

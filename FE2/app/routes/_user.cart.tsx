@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import CartTable from "./component/_user.cartTable";
 import { Cart } from "~/interface/Cart";
 import { Button } from "~/layouts/Button";
-import cartStore from "~/zustand/cartStore";
 import { getCart, updateItemToCart, removeItemToCart } from "~/API/cartAPI";
 import userStore from "~/zustand/userStore";
 import { NavLink } from "react-router-dom";
@@ -10,7 +9,6 @@ import { NavLink } from "react-router-dom";
 export default function CartUser() {
   const [data, setData] = useState<Cart[]>([]);
   const id = userStore((state) => state.id);
-  const cartChange = cartStore((state) => state.changeQuantity);
 
   const fetchData = async () => {
     try {
@@ -80,7 +78,7 @@ export default function CartUser() {
       itemId: item.item.id
     }
     try{
-      const response = await updateItemToCart(id, jsonData);
+      const response = await removeItemToCart(id, jsonData);
     } catch(error) {
       alert("Cập nhập giỏ hàng bị lỗi! Thử lại");
     }

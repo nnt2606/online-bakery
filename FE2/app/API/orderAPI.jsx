@@ -10,6 +10,16 @@ export const getOrderDetail = async(orderId) =>{
     return response;
 }
 
+export const getUserOrder = async(id) => {
+    const response = await axiosInstance.get("/order/history/"+id);
+    return response;
+}
+
+export const placeOrder = async(data) => {
+    const response = await axiosInstance.post("/order/create",data);
+    return response;
+}
+
 export const approveOrder = async(orderId, data) => {
     const response = await axiosInstance.post("/order/approve/"+orderId, data);
     return response;

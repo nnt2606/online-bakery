@@ -4,7 +4,6 @@ import { BiChevronDown, BiRestaurant } from "react-icons/bi";
 import { AiOutlineClose, AiOutlineMenuUnfold } from "react-icons/ai";
 import { useState } from "react";
 import userStore from "~/zustand/userStore";
-import cartStore from "~/zustand/cartStore";
 
 export default function Navbar() {
   const [menu, setMenu] = useState(false);
@@ -14,7 +13,6 @@ export default function Navbar() {
   const userInfor = userStore((state) => state.name);
   const isAuthenciated = userStore((state) => state.isAuthenciated);
   const logout = userStore((state) => state.logout);
-  const logoutCart = cartStore((state) => state.logout);
 
   const handleChange = () => {
     setMenu(!menu);
@@ -22,8 +20,7 @@ export default function Navbar() {
 
   const handleLogout = () =>{
     logout();
-    logoutCart();
-    if(confirm("Tạm biệt! Bạn đã đăng xuất khỏi tài khoản!")) navigate("/");
+    navigate("/");
   }
 
   const handlePanel = () => {
@@ -61,7 +58,7 @@ export default function Navbar() {
             <nav className="hidden md:flex flex-row items-center text-lg font-medium gap-4">
                 <NavLink to="/information" className="text-gray-500 transition-all cursor-pointer">{userInfor}</NavLink>
                 <button className="px-6 py-1 border-2 border-orange text-orange hover:bg-orange hover:text-white transition-all rounded-xl"
-                    onClick={() => handleLogout()}
+                    onClick={handleLogout}
                 >
                     Đăng xuất
                 </button>

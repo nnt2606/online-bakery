@@ -11,7 +11,7 @@ export const DishesCard: React.FC<Props> = ({ data }) => {
   const navigate = useNavigate();
   return (
     <div
-      className="w-full lg:w-1/4 p-5 shadow-[rgba(0,_0,_0,_0.24)_0px_3px_8px] rounded-lg cursor-pointer"
+      className="p-5 shadow-[rgba(0,_0,_0,_0.24)_0px_3px_8px] rounded-lg cursor-pointer"
       onClick={() => navigate(`/product/${data.id}`)}
     >
       <img src={data.img} alt="img" className="rounded-xl h-[400px]" />
