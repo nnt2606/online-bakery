@@ -2,6 +2,7 @@ import { getOrders, getOrdersByUser, getOrderById, getLatestOrder, addOrder, get
 import { getAdminById } from '../utils/admin-utils.js'
 import { getProductById } from '../utils/product-utils.js'
 import { getCartByUserId, clearCart } from '../utils/cart-utils.js'
+import { getUserInfoById } from '../utils/account-utils.js'
 
 export const getAllOrder = async (req,res,next) => {
     try {
@@ -29,6 +30,11 @@ export const getAllOrder = async (req,res,next) => {
                         }
                     }
                 }
+
+                const accInfo = await getUserInfoById(order['accId'])
+                order['name'] = accInfo['name']
+                order['mail'] = accInfo['mail']
+                order['phone'] = accInfo['phone']
 
                 // if (items.length === 0) {
                 //     return res.status(408).json({'msg': 'no item in order'});
@@ -73,6 +79,11 @@ export const getOrderHistory = async (req,res,next) => {
                         }
                     }
                 }
+
+                const accInfo = await getUserInfoById(req.params.id)
+                order['name'] = accInfo['name']
+                order['mail'] = accInfo['mail']
+                order['phone'] = accInfo['phone']
 
                 // if (items.length === 0) {
                 //     return res.status(408).json({'msg': 'no item in order'});
@@ -119,6 +130,11 @@ export const viewOrder = async (req,res,next) => {
                 }
             }
         }
+
+        const accInfo = await getUserInfoById(order['accId'])
+        order['name'] = accInfo['name']
+        order['mail'] = accInfo['mail']
+        order['phone'] = accInfo['phone']
 
         // if (items.length === 0) {
         //     return res.status(408).json({'msg': 'no item in order'});

@@ -11,6 +11,17 @@ export function getUserById(id) {
     });
 }
 
+export function getUserInfoById(id) {
+    return new Promise((resolve, reject) => {
+        db.get('SELECT name, mail, phone FROM account WHERE id=(?)', id, (err, rows) => {
+            if(err)
+                reject(err);
+            else
+                resolve(rows);
+        });
+    });
+}
+
 export function getUserByName(name, password) {
     return new Promise((resolve, reject) => {
         db.get('SELECT id, name, mail, phone FROM account WHERE mail=(?) and password=(?)', [name, password], (err, rows) => {
